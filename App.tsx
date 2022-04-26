@@ -1,23 +1,19 @@
 import React from 'react';
-import SplashScreen from '@screens/SplashScreen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from '@screens/LoginScreen';
-import MainNavigation from '@navigation/MainNavigation';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import RootNavigation from '@navigation/RootNavigation';
 
-const Stack = createNativeStackNavigator();
+const queryClient = new QueryClient();
 const App = () => {
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name={'Splash'} component={SplashScreen} />
-          <Stack.Screen name={'Login'} component={LoginScreen} />
-          <Stack.Screen name={'Main'} component={MainNavigation} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <RootNavigation />
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </QueryClientProvider>
   );
 };
 

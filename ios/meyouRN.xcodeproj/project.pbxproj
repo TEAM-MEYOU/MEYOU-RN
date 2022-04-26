@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* meyouRNTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* meyouRNTests.m */; };
+		1096BEE82813923000A82C7A /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1096BEE72813923000A82C7A /* SwiftBridge.swift */; };
+		1096BEEC2813A18600A82C7A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		1096BEED2813A20400A82C7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2740A7A151AB0793A0D349B3 /* libPods-meyouRN-meyouRNTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77135A7D2AFB1712BD9A169E /* libPods-meyouRN-meyouRNTests.a */; };
@@ -30,6 +33,8 @@
 		00E356F21AD99517003FC87E /* meyouRNTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = meyouRNTests.m; sourceTree = "<group>"; };
 		01135718A6643448FA8C438F /* Pods-meyouRN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meyouRN.debug.xcconfig"; path = "Target Support Files/Pods-meyouRN/Pods-meyouRN.debug.xcconfig"; sourceTree = "<group>"; };
 		03FDD2DB00CB237F33789D74 /* Pods-meyouRN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meyouRN.release.xcconfig"; path = "Target Support Files/Pods-meyouRN/Pods-meyouRN.release.xcconfig"; sourceTree = "<group>"; };
+		1096BEE62813922F00A82C7A /* meyouRN-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "meyouRN-Bridging-Header.h"; sourceTree = "<group>"; };
+		1096BEE72813923000A82C7A /* SwiftBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* meyouRN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = meyouRN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = meyouRN/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = meyouRN/AppDelegate.m; sourceTree = "<group>"; };
@@ -90,6 +95,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				1096BEE72813923000A82C7A /* SwiftBridge.swift */,
+				1096BEE62813922F00A82C7A /* meyouRN-Bridging-Header.h */,
 			);
 			name = meyouRN;
 			sourceTree = "<group>";
@@ -179,6 +186,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				DB7E6FC99286B19AD989960B /* [CP] Copy Pods Resources */,
+				1096BEEB2813A16E00A82C7A /* Resources */,
 			);
 			buildRules = (
 			);
@@ -202,7 +210,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1310;
 					};
 				};
 			};
@@ -230,6 +238,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1096BEEB2813A16E00A82C7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1096BEED2813A20400A82C7A /* LaunchScreen.storyboard in Resources */,
+				1096BEEC2813A18600A82C7A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +381,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				1096BEE82813923000A82C7A /* SwiftBridge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +400,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8C853588BC70388D04B7A9F5 /* Pods-meyouRN-meyouRNTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -409,6 +428,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C706FCB182E39A27FD67034C /* Pods-meyouRN-meyouRNTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = meyouRNTests/Info.plist;
@@ -449,6 +469,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = meyouRN;
+				SWIFT_OBJC_BRIDGING_HEADER = "meyouRN-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -474,6 +495,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = meyouRN;
+				SWIFT_OBJC_BRIDGING_HEADER = "meyouRN-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
