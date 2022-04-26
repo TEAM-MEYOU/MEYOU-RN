@@ -11,6 +11,7 @@
 #import <FlipperKitNetworkPlugin/FlipperKitNetworkPlugin.h>
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
+#import <RNKakaoLogins.h>
 
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
@@ -49,6 +50,23 @@ static void InitializeFlipper(UIApplication *application) {
   [self.window makeKeyAndVisible];
   return YES;
 }
+//
+//- (BOOL)application:(UIApplication *)app
+//     openURL:(NSURL *)url
+//     options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+//  dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+//        dispatch_async(dispatch_get_main_queue(), ^(void){
+//          if ([RNKakaoLogins isKakaoTalkLoginUrl:url]) {
+//            [RNKakaoLogins handleOpenUrl: url];
+//          }
+//        });
+//    });
+//  if([RNKakaoLogins isKakaoTalkLoginUrl:url]) {
+//    return [RNKakaoLogins handleOpenUrl: url];
+// }
+//
+// return NO;
+//}
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {

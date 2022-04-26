@@ -3,13 +3,28 @@ import { Image, View } from 'react-native';
 import { css } from '@emotion/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { checkMember, Member } from '@apis/member';
+import { useQueryClient } from 'react-query';
 
 function SplashScreen({ navigation }: NativeStackScreenProps<any>) {
+  const queryClient = useQueryClient();
+
+  const getKakao = async () => {
+    const kakao = await AsyncStorage.getItem('kakao');
+    if (kakao) {
+      const member: Member = await checkMember(kakao);
+      queryClient.setQueryData('user', member);
+      member.coupleInfo ? navigation.navigate('Main') : navigation.navigate('Connection');
+    } else {
+      navigation.navigate('Login');
+    }
+  };
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('Login');
-    }, 1000);
-  }, [navigation]);
+      getKakao();
+    }, 500);
+  }, []);
   return (
     <SafeAreaView>
       <View
