@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://13.124.118.253:8080/member';
+const API_URL = 'https://meyoudiary.com:8080/member';
 
 export interface Member {
   id: number;
