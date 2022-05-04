@@ -60,7 +60,7 @@ function LoginScreen({ navigation }: NativeStackScreenProps<any>) {
           align-items: center;
           background-color: #fff;
         `}>
-        <Image style={{ width: 100, height: 100 }} source={require('/assets/icons/app_title.png')} />
+        <Image style={{ width: 100, height: 100, marginBottom: 100 }} source={require('/assets/icons/app_title.png')} />
         <ImageButton
           style={{ width: 200, resizeMode: 'contain' }}
           uri={require('/assets/icons/kakao_login_large_narrow.png')}
