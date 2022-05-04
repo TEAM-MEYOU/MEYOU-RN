@@ -5,11 +5,21 @@ import IconText from '@components/IconText';
 import { Alert, Text } from 'react-native';
 import { css } from '@emotion/native';
 import Container from '@components/Container';
-import useUser from '@hooks/userHook';
+import { useFetchUser } from '@hooks/queries';
 import Lottie from '@components/Lottie';
+import Clipboard from '@react-native-clipboard/clipboard';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-function ConnectionScreen() {
-  const user = useUser();
+function ConnectionScreen({ navigation }: NativeStackScreenProps<any>) {
+  const fetchUser = useFetchUser();
+
+  const handlePressMakeAuthCode = () => {
+    navigation.navigate('AuthCodeMake');
+  };
+
+  const handlePressCopy = () => {
+    fetchUser.data && Clipboard.setString(fetchUser.data.uniqueCode);
+  };
 
   return (
     <SafeAreaView>
@@ -35,18 +45,18 @@ function ConnectionScreen() {
               font-size: 18px;
               font-weight: 600;
               line-height: 30px;
-            `}>{`안녕하세요! ${user.data?.uniqueCode}님 \n아직 상대방과 연결되지 않았어요!`}</Text>
+            `}>{`안녕하세요! ${fetchUser.data?.uniqueCode}님 \n아직 상대방과 연결되지 않았어요!`}</Text>
         </Container>
         <IconText uri={require('/assets/icons/share.png')} onPress={() => Alert.alert('hi')}>
           링크 공유하기
         </IconText>
-        <IconText uri={require('/assets/icons/code.png')} onPress={() => Alert.alert('hi')}>
+        <IconText uri={require('/assets/icons/code.png')} onPress={handlePressMakeAuthCode}>
           인증코드 생성하기
         </IconText>
         <IconText uri={require('/assets/icons/code.png')} onPress={() => Alert.alert('hi')}>
           인증코드 입력하기
         </IconText>
-        <IconText uri={require('/assets/icons/copy.png')} onPress={() => Alert.alert('hi')}>
+        <IconText uri={require('/assets/icons/copy.png')} onPress={handlePressCopy}>
           내ID 복사하기
         </IconText>
       </Layout>

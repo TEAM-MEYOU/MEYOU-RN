@@ -1,12 +1,14 @@
-import { useQuery } from 'react-query';
+import { useQuery, UseQueryOptions, UseQueryResult } from 'react-query';
 import { checkMember, Member } from '@apis/member';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
+import { AxiosError } from 'axios';
 
-const useUser = () => {
+export const useFetchUser = (options?: UseQueryOptions<Member, AxiosError, Member, 'user'>) => {
   const [kakao, setKakao] = useState('');
-  const user = useQuery<Member>('user', () => checkMember(kakao), {
+  const user: UseQueryResult<Member, AxiosError> = useQuery('user', () => checkMember(kakao), {
     enabled: kakao !== '',
+    ...options,
   });
 
   const getKakao = async () => {
@@ -20,5 +22,3 @@ const useUser = () => {
 
   return user;
 };
-
-export default useUser;
