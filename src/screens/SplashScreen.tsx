@@ -15,7 +15,7 @@ function SplashScreen({ navigation }: NativeStackScreenProps<any>) {
     if (kakao) {
       const member: Member = await checkMember(kakao);
       queryClient.setQueryData('user', member);
-      member.coupleInfo ? navigation.navigate('Main') : navigation.navigate('Connection');
+      member.coupleInfo ? navigation.navigate('Main') : navigation.navigate('GettingStarted');
     } else {
       navigation.navigate('Login');
     }

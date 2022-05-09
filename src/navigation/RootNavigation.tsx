@@ -7,6 +7,7 @@ import ConnectionScreen from '@screens/ConnectionScreen';
 import CompleteScreen from '@screens/CompleteScreen';
 import AuthCodeMakeScreen from '@screens/AuthCodeMakeScreen';
 import AuthCodeConnectScreen from '@screens/AuthCodeConnectScreen';
+import GettingStartedScreen from '@screens/GettingStartedScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ function RootNavigation() {
       }}>
       <Stack.Screen name={'Splash'} component={SplashScreen} />
       <Stack.Screen name={'Login'} component={LoginScreen} />
+      <Stack.Screen name={'GettingStarted'} component={GettingStartedScreen} />
       <Stack.Screen name={'Connection'} component={ConnectionScreen} />
       <Stack.Screen name={'Complete'} component={CompleteScreen} />
       <Stack.Screen
