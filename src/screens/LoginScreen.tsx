@@ -20,7 +20,7 @@ function LoginScreen({ navigation }: NativeStackScreenProps<any>) {
     await AsyncStorage.setItem('kakao', member.kakao);
     queryClient.setQueryData('user', member);
     // 네비게이션 이동
-    member.coupleInfo ? navigation.navigate('Main') : navigation.navigate('Connection');
+    member.coupleInfo ? navigation.navigate('Main') : navigation.navigate('GettingStarted');
   };
   const handleClickLogin = async () => {
     try {
