@@ -53,7 +53,7 @@ function ConnectionScreen({ navigation }: NativeStackScreenProps<any>) {
         <IconText uri={require('/assets/icons/code.png')} onPress={handlePressMakeAuthCode}>
           인증코드 생성하기
         </IconText>
-        <IconText uri={require('/assets/icons/code.png')} onPress={() => Alert.alert('hi')}>
+        <IconText uri={require('/assets/icons/code.png')} onPress={() => navigation.navigate('AuthCodeConnect')}>
           인증코드 입력하기
         </IconText>
         <IconText uri={require('/assets/icons/copy.png')} onPress={handlePressCopy}>

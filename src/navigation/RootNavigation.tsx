@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ConnectionScreen from '@screens/ConnectionScreen';
 import CompleteScreen from '@screens/CompleteScreen';
 import AuthCodeMakeScreen from '@screens/AuthCodeMakeScreen';
+import AuthCodeConnectScreen from '@screens/AuthCodeConnectScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,11 @@ function RootNavigation() {
         name={'AuthCodeMake'}
         component={AuthCodeMakeScreen}
         options={{ gestureEnabled: true, headerShown: true, headerTitle: '인증코드 생성' }}
+      />
+      <Stack.Screen
+        name={'AuthCodeConnect'}
+        component={AuthCodeConnectScreen}
+        options={{ gestureEnabled: true, headerShown: true, headerTitle: '인증코드 입력' }}
       />
       <Stack.Screen name={'Main'} component={MainNavigation} />
     </Stack.Navigator>
