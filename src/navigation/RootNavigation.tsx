@@ -9,7 +9,18 @@ import AuthCodeMakeScreen from '@screens/AuthCodeMakeScreen';
 import AuthCodeConnectScreen from '@screens/AuthCodeConnectScreen';
 import GettingStartedScreen from '@screens/GettingStartedScreen';
 
-const Stack = createNativeStackNavigator();
+export type RootStackNavigator = {
+  Splash: undefined;
+  Login: undefined;
+  GettingStarted: undefined;
+  Connection: { uniqueCode: string };
+  Complete: undefined;
+  AuthCodeMake: undefined;
+  AuthCodeConnect: undefined;
+  Main: undefined;
+};
+
+const Stack = createNativeStackNavigator<RootStackNavigator>();
 
 function RootNavigation() {
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Layout from '@components/Layout';
 import IconText from '@components/IconText';
-import { Alert, Text } from 'react-native';
+import { Share, Text } from 'react-native';
 import { css } from '@emotion/native';
 import Container from '@components/Container';
 import { useFetchUser } from '@hooks/queries';
@@ -19,6 +19,18 @@ function GettingStartedScreen({ navigation }: NativeStackScreenProps<any>) {
 
   const handlePressCopy = () => {
     fetchUser.data && Clipboard.setString(fetchUser.data.uniqueCode);
+  };
+
+  const handlePressDeepLink = async () => {
+    try {
+      await Share.share({
+        title: '상대방에게 연결신청이 도착했어요!',
+        url: `https://meyoudiary.com/connections?id=${fetchUser.data?.uniqueCode}`,
+        message: `https://meyoudiary.com/connections?id=${fetchUser.data?.uniqueCode}`,
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -47,7 +59,7 @@ function GettingStartedScreen({ navigation }: NativeStackScreenProps<any>) {
               line-height: 30px;
             `}>{`안녕하세요! ${fetchUser.data?.uniqueCode}님 \n아직 상대방과 연결되지 않았어요!`}</Text>
         </Container>
-        <IconText uri={require('/assets/icons/share.png')} onPress={() => Alert.alert('hi')}>
+        <IconText uri={require('/assets/icons/share.png')} onPress={handlePressDeepLink}>
           링크 공유하기
         </IconText>
         <IconText uri={require('/assets/icons/code.png')} onPress={handlePressMakeAuthCode}>
