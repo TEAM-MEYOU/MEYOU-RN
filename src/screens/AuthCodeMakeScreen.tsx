@@ -7,8 +7,9 @@ import BottomCTA from '@components/BottomCTA';
 import { makeAuthCode } from '@apis/couple';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useFetchUser } from '@hooks/queries';
+import { RootStackNavigator } from '@navigation/RootNavigation';
 
-function AuthCodeMakeScreen({ navigation }: NativeStackScreenProps<any>) {
+function AuthCodeMakeScreen({ navigation }: NativeStackScreenProps<RootStackNavigator, 'AuthCodeMake'>) {
   const fetchUser = useFetchUser();
   const [uniqueCode, setUniqueCode] = useState('');
   const [authCode, setAuthCode] = useState('');

@@ -8,8 +8,9 @@ import { checkAuthCode } from '@apis/couple';
 import { useFetchUser } from '@hooks/queries';
 import { useQueryClient } from 'react-query';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackNavigator } from '@navigation/RootNavigation';
 
-function AuthCodeConnectScreen({ navigation }: NativeStackScreenProps<any>) {
+function AuthCodeConnectScreen({ navigation }: NativeStackScreenProps<RootStackNavigator, 'AuthCodeConnect'>) {
   const fetchUser = useFetchUser();
   const queryClient = useQueryClient();
   const [input1, setInput1] = useState('');
