@@ -9,8 +9,9 @@ import { checkMember, getMember, Member, registerMember, RegisterMember } from '
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useQueryClient } from 'react-query';
 import Loading from '@components/Loading';
+import { RootStackNavigator } from '@navigation/RootNavigation';
 
-function LoginScreen({ navigation }: NativeStackScreenProps<any>) {
+function LoginScreen({ navigation }: NativeStackScreenProps<RootStackNavigator, 'Login'>) {
   const [loading, setLoading] = useState(false);
 
   const queryClient = useQueryClient();

@@ -19,7 +19,7 @@ const App = () => {
     },
 
     // Custom function to subscribe to incoming links
-    subscribe(listener: any) {
+    subscribe(listener: (url: string) => void) {
       // Listen to incoming links from deep linking
       const linkingSubscription = Linking.addEventListener('url', ({ url }) => {
         listener(url);

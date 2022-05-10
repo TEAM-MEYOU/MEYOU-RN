@@ -6,8 +6,9 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { checkMember, Member } from '@apis/member';
 import { useQueryClient } from 'react-query';
+import { RootStackNavigator } from '@navigation/RootNavigation';
 
-function SplashScreen({ navigation }: NativeStackScreenProps<any>) {
+function SplashScreen({ navigation }: NativeStackScreenProps<RootStackNavigator, 'Splash'>) {
   const queryClient = useQueryClient();
 
   const getKakao = async () => {

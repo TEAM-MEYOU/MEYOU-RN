@@ -9,8 +9,9 @@ import { useFetchUser } from '@hooks/queries';
 import Lottie from '@components/Lottie';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackNavigator } from '@navigation/RootNavigation';
 
-function GettingStartedScreen({ navigation }: NativeStackScreenProps<any>) {
+function GettingStartedScreen({ navigation }: NativeStackScreenProps<RootStackNavigator, 'GettingStarted'>) {
   const fetchUser = useFetchUser();
 
   const handlePressMakeAuthCode = () => {
