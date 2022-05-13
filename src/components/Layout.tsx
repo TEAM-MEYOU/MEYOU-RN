@@ -5,7 +5,7 @@ const Layout = styled.View`
   width: 100%;
   height: 100%;
   align-items: center;
-  padding: 10px 0;
+  padding: 10px;
   background-color: ${colors.background};
 `;
 

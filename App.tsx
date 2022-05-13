@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import RootNavigation from '@navigation/RootNavigation';
 import { Linking } from 'react-native';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({ defaultOptions: { queries: { retry: 0 } } });
 const App = () => {
   const linking = {
     prefixes: ['meyou://', 'https://myapp.com'],
