@@ -15,7 +15,7 @@ function Container({ children, style }: Props) {
         css`
           position: relative;
           background-color: ${colors.white};
-          width: 95%;
+          width: 100%;
           height: auto;
           padding: 20px;
           border-radius: 12px;
