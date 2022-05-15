@@ -18,7 +18,7 @@ function IconText({ uri, children, onPress, style }: Props) {
         css`
           background-color: ${colors.white};
           border-radius: 12px;
-          width: 95%;
+          width: 100%;
           margin-top: 15px;
         `,
         {

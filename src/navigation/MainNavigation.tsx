@@ -1,16 +1,18 @@
 import React, { useCallback } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '@screens/HomeScreen';
-import DiaryScreen from '@screens/DiaryScreen';
 import ChartScreen from '@screens/ChartScreen';
 import GameScreen from '@screens/GameScreen';
 import OptionScreen from '@screens/OptionScreen';
 import { Image } from 'react-native';
 import colors from '@constants/colors';
+import DiaryNavigation from '@navigation/DiaryNavigation';
+import { useFetchDiaryByDate, useFetchUser } from '@hooks/queries';
+import { ToJavaLocaleDate } from '@utils/date';
 
 export type MainTabNavigator = {
   Home: undefined;
-  Diary: undefined;
+  DiaryNavigation: undefined;
   Chart: undefined;
   Game: undefined;
   Option: undefined;
@@ -28,6 +30,10 @@ const TabMenu = {
 type TabMenuValue = typeof TabMenu[keyof typeof TabMenu];
 
 function MainNavigation() {
+  const today = ToJavaLocaleDate(new Date());
+  const fetchUser = useFetchUser();
+  const fetchDiaryDate = useFetchDiaryByDate(fetchUser.data!.id!, today);
+
   return (
     <MainTab.Navigator
       initialRouteName={'Home'}
@@ -43,9 +49,17 @@ function MainNavigation() {
         options={{ tabBarIcon: props => <TabBarIcon name={'home'} {...props} /> }}
       />
       <MainTab.Screen
-        name={'Diary'}
-        component={DiaryScreen}
+        name={'DiaryNavigation'}
+        component={DiaryNavigation}
         options={{ tabBarIcon: props => <TabBarIcon name={'diary'} {...props} /> }}
+        listeners={({ navigation }) => ({
+          tabPress: e => {
+            e.preventDefault();
+            fetchDiaryDate.data
+              ? navigation.navigate('DiaryNavigation', { screen: 'Complete' })
+              : navigation.navigate('DiaryNavigation', { screen: 'Diary' });
+          },
+        })}
       />
       <MainTab.Screen
         name={'Chart'}
