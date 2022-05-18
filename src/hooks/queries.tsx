@@ -11,7 +11,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { AxiosError } from 'axios';
 import { Couple, getCouple } from '@apis/couple';
-import { CoupleDiary, Diary, getCoupleDiary, getDiaryByDate, getDiaryById, Page } from '@apis/diary';
+import {
+  CoupleDiary,
+  Diary,
+  getCoupleDiary,
+  getCoupleDiaryByDuration,
+  getDiaryByDate,
+  getDiaryById,
+  Page,
+} from '@apis/diary';
 import { CoinLog, getCoinLog } from '@apis/coin';
 
 export const useFetchUser = (options?: UseQueryOptions<Member, AxiosError, Member, 'user'>) => {
@@ -84,13 +92,29 @@ export const useFetchDiaryByDate = (
   return diary;
 };
 
+export const useFetchDiaryByDuration = (
+  coupleId: number,
+  start: string,
+  end: string,
+  options?: UseQueryOptions<Array<CoupleDiary>, AxiosError, Array<CoupleDiary>, ['diary', string, string]>
+) => {
+  const coupleDiary: UseQueryResult<Array<CoupleDiary>, AxiosError> = useQuery(
+    ['diary', start, end],
+    () => getCoupleDiaryByDuration(coupleId, start, end),
+    {
+      ...options,
+    }
+  );
+  return coupleDiary;
+};
+
 export const useFetchCoinLog = (
   coupleId: number,
   start: string,
   end: string,
   options?: UseQueryOptions<Array<CoinLog>, AxiosError, Array<CoinLog>, ['coin', string, string]>
 ) => {
-  const coinLog: UseQueryResult<Array<CoinLog>> = useQuery(
+  const coinLog: UseQueryResult<Array<CoinLog>, AxiosError> = useQuery(
     ['coin', start, end],
     () => getCoinLog(coupleId, start, end),
     {
