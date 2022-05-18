@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '@screens/HomeScreen';
-import ChartScreen from '@screens/ChartScreen';
 import GameScreen from '@screens/GameScreen';
 import OptionScreen from '@screens/OptionScreen';
 import { Image } from 'react-native';
@@ -9,11 +8,12 @@ import colors from '@constants/colors';
 import DiaryNavigation from '@navigation/DiaryNavigation';
 import { useFetchDiaryByDate, useFetchUser } from '@hooks/queries';
 import { ToJavaLocaleDate } from '@utils/date';
+import ChartNavigation from '@navigation/ChartNavigation';
 
 export type MainTabNavigator = {
   Home: undefined;
   DiaryNavigation: undefined;
-  Chart: undefined;
+  ChartNavigation: undefined;
   Game: undefined;
   Option: undefined;
 };
@@ -62,8 +62,8 @@ function MainNavigation() {
         })}
       />
       <MainTab.Screen
-        name={'Chart'}
-        component={ChartScreen}
+        name={'ChartNavigation'}
+        component={ChartNavigation}
         options={{ tabBarIcon: props => <TabBarIcon name={'chart'} {...props} /> }}
       />
       <MainTab.Screen

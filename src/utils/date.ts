@@ -33,7 +33,7 @@ export const ToJavaLocaleDate = (date: Date) => {
 };
 
 /**
- * Java LocaleTime -> DiaryLog DateTime Convert
+ * Java LocaleTime -> DiaryLogScreen DateTime Convert
  * @param date
  * @constructor
  */
