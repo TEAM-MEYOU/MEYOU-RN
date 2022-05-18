@@ -23,6 +23,10 @@ function DiaryBox({ coupleDiary }: Props) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    setVisible(false);
+  }, [coupleDiary]);
+
+  useEffect(() => {
     if (fetchUser.data && fetchDiary1.data && fetchDiary2.data !== null) {
       if (fetchDiary1.data.memberId === fetchUser.data.id || fetchDiary2.data?.memberId === fetchUser.data.id) {
         setVisible(true);
