@@ -21,6 +21,7 @@ import {
   Page,
 } from '@apis/diary';
 import { CoinLog, getCoinLog } from '@apis/coin';
+import { getStat, Stat } from '@apis/stat';
 
 export const useFetchUser = (options?: UseQueryOptions<Member, AxiosError, Member, 'user'>) => {
   const [kakao, setKakao] = useState('');
@@ -123,4 +124,15 @@ export const useFetchCoinLog = (
     }
   );
   return coinLog;
+};
+
+export const useFetchStat = (
+  memberId: number,
+  date: string,
+  options?: UseQueryOptions<Stat, AxiosError, Stat, ['stat', number, string]>
+) => {
+  const stats: UseQueryResult<Stat, AxiosError> = useQuery(['stat', memberId, date], () => getStat(memberId, date), {
+    ...options,
+  });
+  return stats;
 };
