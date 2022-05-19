@@ -2,6 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DiaryLogScreen from '@screens/DiaryLogScreen';
 import ChartScreen from '@screens/ChartScreen';
+import EmotionScreen from '@screens/EmotionScreen';
 
 export type ChartStackNavigation = {
   Chart: undefined;
@@ -25,6 +26,7 @@ function ChartNavigation() {
       }}>
       <ChatStack.Screen name={'Chart'} component={ChartScreen} options={{ headerShown: false }} />
       <ChatStack.Screen name={'DiaryLog'} component={DiaryLogScreen} options={{ headerTitle: '다이어리 기록' }} />
+      <ChatStack.Screen name={'Emotion'} component={EmotionScreen} options={{ headerTitle: '달별 감정통계' }} />
     </ChatStack.Navigator>
   );
 }
