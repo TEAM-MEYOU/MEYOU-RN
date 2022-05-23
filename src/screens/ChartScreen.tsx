@@ -21,7 +21,9 @@ function ChartScreen({ navigation }: NativeStackScreenProps<ChartStackNavigation
         <IconText uri={require('/assets/icons/thinking.png')} onPress={() => handleNavigate('Frequency')}>
           이번달 누가 더 다이어리를 많이 썼을까요?
         </IconText>
-        <IconText uri={require('/assets/icons/thinking.png')}>누가 더 다이어리를 길게 썼을까요?</IconText>
+        <IconText uri={require('/assets/icons/thinking.png')} onPress={() => handleNavigate('Length')}>
+          누가 더 다이어리를 길게 썼을까요?
+        </IconText>
         <IconText uri={require('/assets/icons/coin.png')}>코인을 어떻게 사용했을까요?</IconText>
       </Layout>
     </SafeAreaView>

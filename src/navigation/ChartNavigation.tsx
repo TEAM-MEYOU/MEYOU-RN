@@ -4,13 +4,14 @@ import DiaryLogScreen from '@screens/DiaryLogScreen';
 import ChartScreen from '@screens/ChartScreen';
 import EmotionScreen from '@screens/EmotionScreen';
 import FrequencyScreen from '@screens/FrequencyScreen';
+import LengthScreen from '@screens/LengthScreen';
 
 export type ChartStackNavigation = {
   Chart: undefined;
   DiaryLog: undefined;
   Emotion: undefined;
   Frequency: undefined;
-  Long: undefined;
+  Length: undefined;
   Coin: undefined;
 };
 
@@ -33,6 +34,7 @@ function ChartNavigation() {
         component={FrequencyScreen}
         options={{ headerTitle: '달별 다이어리 빈도' }}
       />
+      <ChatStack.Screen name={'Length'} component={LengthScreen} options={{ headerTitle: '달별 다이어리 평균길이' }} />
     </ChatStack.Navigator>
   );
 }
