@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Layout from '@components/Layout';
 import Container from '@components/Container';
@@ -30,9 +30,6 @@ function EmotionScreen() {
     setDate(ToJavaLocaleDate(_date));
   };
 
-  useEffect(() => {
-    console.log(date);
-  }, [date]);
   return (
     <SafeAreaView edges={['left', 'right']}>
       <Layout>
