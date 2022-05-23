@@ -5,6 +5,7 @@ import ChartScreen from '@screens/ChartScreen';
 import EmotionScreen from '@screens/EmotionScreen';
 import FrequencyScreen from '@screens/FrequencyScreen';
 import LengthScreen from '@screens/LengthScreen';
+import CoinScreen from '@screens/CoinScreen';
 
 export type ChartStackNavigation = {
   Chart: undefined;
@@ -35,6 +36,7 @@ function ChartNavigation() {
         options={{ headerTitle: '달별 다이어리 빈도' }}
       />
       <ChatStack.Screen name={'Length'} component={LengthScreen} options={{ headerTitle: '달별 다이어리 평균길이' }} />
+      <ChatStack.Screen name={'Coin'} component={CoinScreen} options={{ headerTitle: '코인 사용기록' }} />
     </ChatStack.Navigator>
   );
 }
