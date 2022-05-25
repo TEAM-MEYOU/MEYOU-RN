@@ -4,7 +4,11 @@
  * @constructor
  */
 export const ConvertMeYouDateString = (date: Date) => {
-  return `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const padMonth = month < 10 ? '0' + month : month;
+  const padDay = day < 10 ? '0' + day : day;
+  return `${date.getFullYear()}.${padMonth}.${padDay}`;
 };
 
 /**
