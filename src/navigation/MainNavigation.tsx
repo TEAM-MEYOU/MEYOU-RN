@@ -1,22 +1,30 @@
 import React, { useCallback } from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { BottomTabNavigationProp, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '@screens/HomeScreen';
 import GameScreen from '@screens/GameScreen';
-import OptionScreen from '@screens/OptionScreen';
 import { Image } from 'react-native';
 import colors from '@constants/colors';
 import DiaryNavigation from '@navigation/DiaryNavigation';
 import { useFetchDiaryByDate, useFetchUser } from '@hooks/queries';
 import { ToJavaLocaleDate } from '@utils/date';
 import ChartNavigation from '@navigation/ChartNavigation';
+import OptionNavigation from '@navigation/OptionNavigation';
+import { CompositeNavigationProp } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackNavigator } from '@navigation/RootNavigation';
 
 export type MainTabNavigator = {
   Home: undefined;
   DiaryNavigation: undefined;
   ChartNavigation: undefined;
   Game: undefined;
-  Option: undefined;
+  OptionNavigation: undefined;
 };
+
+export type MainTabNavigationProp = CompositeNavigationProp<
+  NativeStackNavigationProp<RootStackNavigator>,
+  BottomTabNavigationProp<MainTabNavigator>
+>;
 const MainTab = createBottomTabNavigator<MainTabNavigator>();
 
 const TabMenu = {
@@ -72,8 +80,8 @@ function MainNavigation() {
         options={{ tabBarIcon: props => <TabBarIcon name={'game'} {...props} /> }}
       />
       <MainTab.Screen
-        name={'Option'}
-        component={OptionScreen}
+        name={'OptionNavigation'}
+        component={OptionNavigation}
         options={{ tabBarIcon: props => <TabBarIcon name={'option'} {...props} /> }}
       />
     </MainTab.Navigator>

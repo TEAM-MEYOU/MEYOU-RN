@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Image, ImageSourcePropType, ImageStyle, StyleProp } from 'react-native';
 import { useState } from 'react';
 
@@ -15,6 +15,16 @@ function UserProfileImage({ url, style }: Props) {
       return { uri: url };
     }
   });
+
+  useEffect(() => {
+    setSource(() => {
+      if (url === '/icons/user.jpeg') {
+        return require('/assets/icons/user.jpeg');
+      } else {
+        return { uri: url };
+      }
+    });
+  }, [url]);
   return <Image style={[{ borderRadius: 50, resizeMode: 'cover' }, style]} source={source} />;
 }
 
