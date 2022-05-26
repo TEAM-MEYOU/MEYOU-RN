@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import BottomCTA from '@components/BottomCTA';
-import { Alert, Keyboard, Text, TextInput } from 'react-native';
+import { Alert, Keyboard, Text, TextInput, View } from 'react-native';
 import OptionView from '@components/OptionView';
 import { useFetchCouple, useFetchUser } from '@hooks/queries';
 import { ConvertMeYouDateString } from '@utils/date';
@@ -43,48 +43,53 @@ function CoupleDataChangeScreen({ navigation }: NativeStackScreenProps<OptionSta
   return (
     <OptionView>
       <KeyboardHide>
-        <Text
+        <View
           style={css`
-            font-weight: 500;
-            font-size: 16px;
-            color: ${colors.grey500};
+            flex: 1;
           `}>
-          우리의 시작일
-        </Text>
-        <Text
-          style={css`
-            margin-top: 10px;
-            font-weight: 600;
-            font-size: 22px;
-          `}>
-          {`우리가 시작한 날짜를\n입력해보세요`}
-        </Text>
-        <TextInput
-          style={css`
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: 500;
-            padding: 5px;
-            border-bottom-width: 1px;
-          `}
-          value={date}
-          onChangeText={handleChangeText}
-          placeholder={'시작한 날짜를 입력하세요'}
-          keyboardType={'numeric'}
-          maxLength={10}
-          onSubmitEditing={Keyboard.dismiss}
-        />
-        <Text
-          style={css`
-            margin-top: 5px;
-            margin-left: auto;
-            letter-spacing: -0.5px;
-            font-weight: 500;
-            color: ${colors.content300};
-          `}>
-          *yyyy.mm.dd형식
-        </Text>
-        <BottomCTA onPress={handlePressChange}>변경</BottomCTA>
+          <Text
+            style={css`
+              font-weight: 500;
+              font-size: 16px;
+              color: ${colors.grey500};
+            `}>
+            우리의 시작일
+          </Text>
+          <Text
+            style={css`
+              margin-top: 10px;
+              font-weight: 600;
+              font-size: 22px;
+            `}>
+            {`우리가 시작한 날짜를\n입력해보세요`}
+          </Text>
+          <TextInput
+            style={css`
+              margin-top: 20px;
+              font-size: 20px;
+              font-weight: 500;
+              padding: 5px;
+              border-bottom-width: 1px;
+            `}
+            value={date}
+            onChangeText={handleChangeText}
+            placeholder={'시작한 날짜를 입력하세요'}
+            keyboardType={'numeric'}
+            maxLength={10}
+            onSubmitEditing={Keyboard.dismiss}
+          />
+          <Text
+            style={css`
+              margin-top: 5px;
+              margin-left: auto;
+              letter-spacing: -0.5px;
+              font-weight: 500;
+              color: ${colors.content300};
+            `}>
+            *yyyy.mm.dd형식
+          </Text>
+          <BottomCTA onPress={handlePressChange}>변경</BottomCTA>
+        </View>
       </KeyboardHide>
     </OptionView>
   );

@@ -54,34 +54,39 @@ function ProfileChangeScreen({ navigation }: NativeStackScreenProps<OptionStackN
   return (
     <OptionView>
       <KeyboardHide>
-        <GreyTitle>프로필 변경</GreyTitle>
-        <BigTitle>{`상대방의 프로필을\n변경해 보세요`}</BigTitle>
         <View
           style={css`
-            margin-top: 20px;
-            align-items: center;
+            flex: 1;
           `}>
-          <TouchableOpacity onPress={handlePressChangeImage}>
-            <UserProfileImage url={url} style={{ width: 70, height: 70 }} />
-          </TouchableOpacity>
-          <TextInput
+          <GreyTitle>프로필 변경</GreyTitle>
+          <BigTitle>{`상대방의 프로필을\n변경해 보세요`}</BigTitle>
+          <View
             style={css`
-              width: 100px;
-              font-weight: 500;
-              font-size: 16px;
-              text-align: center;
-              margin-top: 5px;
-              padding: 5px;
-              border-bottom-width: 2px;
-            `}
-            value={nickName}
-            onChangeText={setNickName}
-            maxLength={5}
-            placeholder={'별명'}
-            onSubmitEditing={Keyboard.dismiss}
-          />
+              margin-top: 20px;
+              align-items: center;
+            `}>
+            <TouchableOpacity onPress={handlePressChangeImage}>
+              <UserProfileImage url={url} style={{ width: 70, height: 70 }} />
+            </TouchableOpacity>
+            <TextInput
+              style={css`
+                width: 100px;
+                font-weight: 500;
+                font-size: 16px;
+                text-align: center;
+                margin-top: 5px;
+                padding: 5px;
+                border-bottom-width: 2px;
+              `}
+              value={nickName}
+              onChangeText={setNickName}
+              maxLength={5}
+              placeholder={'별명'}
+              onSubmitEditing={Keyboard.dismiss}
+            />
+          </View>
+          <BottomCTA onPress={handlePressChange}>변경</BottomCTA>
         </View>
-        <BottomCTA onPress={handlePressChange}>변경</BottomCTA>
       </KeyboardHide>
     </OptionView>
   );

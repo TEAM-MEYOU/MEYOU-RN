@@ -37,36 +37,41 @@ function AuthCodeMakeScreen({ navigation }: NativeStackScreenProps<RootStackNavi
         padding: 15px;
       `}>
       <KeyboardHide>
-        {authCode ? (
-          <>
-            <TitleText>인증코드</TitleText>
-            <SubText>상대방에게 인증코드를 알려주세요</SubText>
-            <View
-              style={css`
-                padding: 30px 60px;
-                flex-direction: row;
-                justify-content: space-between;
-              `}>
-              <AuthCodeText>{authCode[0]}</AuthCodeText>
-              <AuthCodeText>{authCode[1]}</AuthCodeText>
-              <AuthCodeText>{authCode[2]}</AuthCodeText>
-              <AuthCodeText>{authCode[3]}</AuthCodeText>
-            </View>
-            <BottomCTA onPress={() => navigation.goBack()}>확인</BottomCTA>
-          </>
-        ) : (
-          <>
-            <TitleText>상대방 ID를 입력해주세요</TitleText>
-            <SubText>인증코드 생성을 위해 필요힙니다</SubText>
-            <UniqueCodeInput
-              value={uniqueCode}
-              onChangeText={text => setUniqueCode(text.replace(/[^0-9]/g, ''))}
-              keyboardType={'numeric'}
-              onSubmitEditing={Keyboard.dismiss}
-            />
-            <BottomCTA onPress={handlePressMakeButton}>인증코드 생성</BottomCTA>
-          </>
-        )}
+        <View
+          style={css`
+            flex: 1;
+          `}>
+          {authCode ? (
+            <>
+              <TitleText>인증코드</TitleText>
+              <SubText>상대방에게 인증코드를 알려주세요</SubText>
+              <View
+                style={css`
+                  padding: 30px 60px;
+                  flex-direction: row;
+                  justify-content: space-between;
+                `}>
+                <AuthCodeText>{authCode[0]}</AuthCodeText>
+                <AuthCodeText>{authCode[1]}</AuthCodeText>
+                <AuthCodeText>{authCode[2]}</AuthCodeText>
+                <AuthCodeText>{authCode[3]}</AuthCodeText>
+              </View>
+              <BottomCTA onPress={() => navigation.goBack()}>확인</BottomCTA>
+            </>
+          ) : (
+            <>
+              <TitleText>상대방 ID를 입력해주세요</TitleText>
+              <SubText>인증코드 생성을 위해 필요힙니다</SubText>
+              <UniqueCodeInput
+                value={uniqueCode}
+                onChangeText={text => setUniqueCode(text.replace(/[^0-9]/g, ''))}
+                keyboardType={'numeric'}
+                onSubmitEditing={Keyboard.dismiss}
+              />
+              <BottomCTA onPress={handlePressMakeButton}>인증코드 생성</BottomCTA>
+            </>
+          )}
+        </View>
       </KeyboardHide>
     </SafeAreaView>
   );
