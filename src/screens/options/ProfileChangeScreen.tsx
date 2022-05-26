@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import OptionView from '@components/OptionView';
-import { Platform, TextInput, TouchableOpacity, View } from 'react-native';
+import { Keyboard, TextInput, TouchableOpacity, View } from 'react-native';
 import { GreyTitle } from '@components/Text/GreyTitle';
 import { BigTitle } from '@components/Text/BigTitle';
 import { useFetchUser } from '@hooks/queries';
@@ -14,6 +14,7 @@ import { Member, updateMember } from '@apis/member';
 import { useQueryClient } from 'react-query';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { OptionStackNavigator } from '@navigation/OptionNavigation';
+import KeyboardHide from '@components/KeyboardHide';
 
 function ProfileChangeScreen({ navigation }: NativeStackScreenProps<OptionStackNavigator, 'ProfileChange'>) {
   const queryClient = useQueryClient();
@@ -37,7 +38,7 @@ function ProfileChangeScreen({ navigation }: NativeStackScreenProps<OptionStackN
     try {
       if (url !== fetchUser.data?.coupleInfo?.imageUrl) {
         const resizedImage = await ImageResizer.createResizedImage(url!, 300, 300, 'JPEG', 100);
-        await aws.upload(url, fileName, fetchUser.data!.id);
+        await aws.upload(url!, fileName, fetchUser.data!.id);
       }
       if (nickName !== fetchUser.data?.coupleInfo?.nickname) {
         const member: Partial<Member> = { ...fetchUser.data!.coupleInfo, nickname: nickName };
@@ -52,33 +53,36 @@ function ProfileChangeScreen({ navigation }: NativeStackScreenProps<OptionStackN
 
   return (
     <OptionView>
-      <GreyTitle>프로필 변경</GreyTitle>
-      <BigTitle>{`상대방의 프로필을\n변경해 보세요`}</BigTitle>
-      <View
-        style={css`
-          margin-top: 20px;
-          align-items: center;
-        `}>
-        <TouchableOpacity onPress={handlePressChangeImage}>
-          <UserProfileImage url={url} style={{ width: 70, height: 70 }} />
-        </TouchableOpacity>
-        <TextInput
+      <KeyboardHide>
+        <GreyTitle>프로필 변경</GreyTitle>
+        <BigTitle>{`상대방의 프로필을\n변경해 보세요`}</BigTitle>
+        <View
           style={css`
-            width: 100px;
-            font-weight: 500;
-            font-size: 16px;
-            text-align: center;
-            margin-top: 5px;
-            padding: 5px;
-            border-bottom-width: 2px;
-          `}
-          value={nickName}
-          onChangeText={setNickName}
-          maxLength={5}
-          placeholder={'별명'}
-        />
-      </View>
-      <BottomCTA onPress={handlePressChange}>변경</BottomCTA>
+            margin-top: 20px;
+            align-items: center;
+          `}>
+          <TouchableOpacity onPress={handlePressChangeImage}>
+            <UserProfileImage url={url} style={{ width: 70, height: 70 }} />
+          </TouchableOpacity>
+          <TextInput
+            style={css`
+              width: 100px;
+              font-weight: 500;
+              font-size: 16px;
+              text-align: center;
+              margin-top: 5px;
+              padding: 5px;
+              border-bottom-width: 2px;
+            `}
+            value={nickName}
+            onChangeText={setNickName}
+            maxLength={5}
+            placeholder={'별명'}
+            onSubmitEditing={Keyboard.dismiss}
+          />
+        </View>
+        <BottomCTA onPress={handlePressChange}>변경</BottomCTA>
+      </KeyboardHide>
     </OptionView>
   );
 }

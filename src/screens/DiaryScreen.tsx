@@ -11,6 +11,7 @@ import { useFetchUser } from '@hooks/queries';
 import { useQueryClient } from 'react-query';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { DiaryStackNavigator } from '@navigation/DiaryNavigation';
+import KeyboardHide from '@components/KeyboardHide';
 
 function DiaryScreen({ navigation }: NativeStackScreenProps<DiaryStackNavigator>) {
   const fetchUser = useFetchUser();
@@ -48,92 +49,94 @@ function DiaryScreen({ navigation }: NativeStackScreenProps<DiaryStackNavigator>
   };
   return (
     <SafeAreaView edges={['top', 'left', 'right']}>
-      <Layout>
-        <Container
-          style={css`
-            flex: 1;
-          `}>
-          <Text
-            style={css`
-              font-weight: 600;
-              font-size: 18px;
-            `}>
-            {date.getMonth() + 1}월 {date.getDate()}일 다이어리
-          </Text>
-          <TextInput
+      <KeyboardHide>
+        <Layout>
+          <Container
             style={css`
               flex: 1;
-              font-weight: 500;
-              font-size: 16px;
-            `}
-            multiline={true}
-            textAlignVertical={'top'}
-            placeholder={'오늘의 다이어리를 작성해보세요!'}
-            value={content}
-            onChangeText={setContent}
-          />
-          <View
-            style={css`
-              flex-direction: row;
-              align-items: center;
-              margin-top: 10px;
-              margin-left: auto;
             `}>
-            <Image style={{ width: 35, height: 35, marginRight: 5 }} source={require('/assets/icons/coin.png')} />
             <Text
               style={css`
                 font-weight: 600;
                 font-size: 18px;
-                letter-spacing: -0.5px;
               `}>
-              +1
+              {date.getMonth() + 1}월 {date.getDate()}일 다이어리
             </Text>
-          </View>
-        </Container>
-        <Container
-          style={css`
-            margin: 10px 0;
-          `}>
-          <Text
+            <TextInput
+              style={css`
+                flex: 1;
+                font-weight: 500;
+                font-size: 16px;
+              `}
+              multiline={true}
+              textAlignVertical={'top'}
+              placeholder={'오늘의 다이어리를 작성해보세요!'}
+              value={content}
+              onChangeText={setContent}
+            />
+            <View
+              style={css`
+                flex-direction: row;
+                align-items: center;
+                margin-top: 10px;
+                margin-left: auto;
+              `}>
+              <Image style={{ width: 35, height: 35, marginRight: 5 }} source={require('/assets/icons/coin.png')} />
+              <Text
+                style={css`
+                  font-weight: 600;
+                  font-size: 18px;
+                  letter-spacing: -0.5px;
+                `}>
+                +1
+              </Text>
+            </View>
+          </Container>
+          <Container
             style={css`
-              font-weight: 600;
-              font-size: 18px;
+              margin: 10px 0;
             `}>
-            오늘 나의 감정
-          </Text>
-          <Text
-            style={css`
-              letter-spacing: -0.5px;
-              font-weight: 500;
-              color: ${colors.content300};
-            `}>
-            더 좋은 서비스를위해 MeYou에 감정이 제공됩니다.
-          </Text>
-          <View
-            style={css`
-              flex-direction: row;
-              justify-content: space-between;
-              flex-wrap: wrap;
-            `}>
-            <EmotionSelectBox emotion={emotion} type={'LOVE'} setEmotion={setEmotion} />
-            <EmotionSelectBox emotion={emotion} type={'HAPPY'} setEmotion={setEmotion} />
-            <EmotionSelectBox emotion={emotion} type={'NEUTRAL'} setEmotion={setEmotion} />
-            <EmotionSelectBox emotion={emotion} type={'DEPRESSED'} setEmotion={setEmotion} />
-            <EmotionSelectBox emotion={emotion} type={'SAD'} setEmotion={setEmotion} />
-            <EmotionSelectBox emotion={emotion} type={'ANGRY'} setEmotion={setEmotion} />
-          </View>
-          <Text
-            style={css`
-              margin: 30px 0 10px;
-              font-weight: 600;
-              font-size: 18px;
-            `}>
-            MeYou가 추측한 감정
-          </Text>
-          <BottomCTA onPress={handlePressEmotionAI}>분석하기</BottomCTA>
-        </Container>
-        <BottomCTA onPress={handlePressWrite}>완료</BottomCTA>
-      </Layout>
+            <Text
+              style={css`
+                font-weight: 600;
+                font-size: 18px;
+              `}>
+              오늘 나의 감정
+            </Text>
+            <Text
+              style={css`
+                letter-spacing: -0.5px;
+                font-weight: 500;
+                color: ${colors.content300};
+              `}>
+              더 좋은 서비스를위해 MeYou에 감정이 제공됩니다.
+            </Text>
+            <View
+              style={css`
+                flex-direction: row;
+                justify-content: space-between;
+                flex-wrap: wrap;
+              `}>
+              <EmotionSelectBox emotion={emotion} type={'LOVE'} setEmotion={setEmotion} />
+              <EmotionSelectBox emotion={emotion} type={'HAPPY'} setEmotion={setEmotion} />
+              <EmotionSelectBox emotion={emotion} type={'NEUTRAL'} setEmotion={setEmotion} />
+              <EmotionSelectBox emotion={emotion} type={'DEPRESSED'} setEmotion={setEmotion} />
+              <EmotionSelectBox emotion={emotion} type={'SAD'} setEmotion={setEmotion} />
+              <EmotionSelectBox emotion={emotion} type={'ANGRY'} setEmotion={setEmotion} />
+            </View>
+            <Text
+              style={css`
+                margin: 30px 0 10px;
+                font-weight: 600;
+                font-size: 18px;
+              `}>
+              MeYou가 추측한 감정
+            </Text>
+            <BottomCTA onPress={handlePressEmotionAI}>분석하기</BottomCTA>
+          </Container>
+          <BottomCTA onPress={handlePressWrite}>완료</BottomCTA>
+        </Layout>
+      </KeyboardHide>
     </SafeAreaView>
   );
 }

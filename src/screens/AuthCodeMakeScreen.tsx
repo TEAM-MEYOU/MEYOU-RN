@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react';
-import { Alert, Text, View } from 'react-native';
+import { Alert, Keyboard, Text, View } from 'react-native';
 import styled, { css } from '@emotion/native';
 import colors from '@constants/colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -8,6 +8,7 @@ import { makeAuthCode } from '@apis/couple';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useFetchUser } from '@hooks/queries';
 import { RootStackNavigator } from '@navigation/RootNavigation';
+import KeyboardHide from '@components/KeyboardHide';
 
 function AuthCodeMakeScreen({ navigation }: NativeStackScreenProps<RootStackNavigator, 'AuthCodeMake'>) {
   const fetchUser = useFetchUser();
@@ -35,35 +36,38 @@ function AuthCodeMakeScreen({ navigation }: NativeStackScreenProps<RootStackNavi
         flex: 1;
         padding: 15px;
       `}>
-      {authCode ? (
-        <>
-          <TitleText>인증코드</TitleText>
-          <SubText>상대방에게 인증코드를 알려주세요</SubText>
-          <View
-            style={css`
-              padding: 30px 60px;
-              flex-direction: row;
-              justify-content: space-between;
-            `}>
-            <AuthCodeText>{authCode[0]}</AuthCodeText>
-            <AuthCodeText>{authCode[1]}</AuthCodeText>
-            <AuthCodeText>{authCode[2]}</AuthCodeText>
-            <AuthCodeText>{authCode[3]}</AuthCodeText>
-          </View>
-          <BottomCTA onPress={() => navigation.goBack()}>확인</BottomCTA>
-        </>
-      ) : (
-        <>
-          <TitleText>상대방 ID를 입력해주세요</TitleText>
-          <SubText>인증코드 생성을 위해 필요힙니다</SubText>
-          <UniqueCodeInput
-            value={uniqueCode}
-            onChangeText={text => setUniqueCode(text.replace(/[^0-9]/g, ''))}
-            keyboardType={'numeric'}
-          />
-          <BottomCTA onPress={handlePressMakeButton}>인증코드 생성</BottomCTA>
-        </>
-      )}
+      <KeyboardHide>
+        {authCode ? (
+          <>
+            <TitleText>인증코드</TitleText>
+            <SubText>상대방에게 인증코드를 알려주세요</SubText>
+            <View
+              style={css`
+                padding: 30px 60px;
+                flex-direction: row;
+                justify-content: space-between;
+              `}>
+              <AuthCodeText>{authCode[0]}</AuthCodeText>
+              <AuthCodeText>{authCode[1]}</AuthCodeText>
+              <AuthCodeText>{authCode[2]}</AuthCodeText>
+              <AuthCodeText>{authCode[3]}</AuthCodeText>
+            </View>
+            <BottomCTA onPress={() => navigation.goBack()}>확인</BottomCTA>
+          </>
+        ) : (
+          <>
+            <TitleText>상대방 ID를 입력해주세요</TitleText>
+            <SubText>인증코드 생성을 위해 필요힙니다</SubText>
+            <UniqueCodeInput
+              value={uniqueCode}
+              onChangeText={text => setUniqueCode(text.replace(/[^0-9]/g, ''))}
+              keyboardType={'numeric'}
+              onSubmitEditing={Keyboard.dismiss}
+            />
+            <BottomCTA onPress={handlePressMakeButton}>인증코드 생성</BottomCTA>
+          </>
+        )}
+      </KeyboardHide>
     </SafeAreaView>
   );
 }
