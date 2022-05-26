@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Layout from '@components/Layout';
 import CoupleInfo from '@components/CoupleInfo';
@@ -27,6 +27,7 @@ function HomeScreen() {
             .flat()}
           renderItem={({ item }: ListRenderItemInfo<CoupleDiary>) => <DiaryBox coupleDiary={item} />}
           keyExtractor={item => String(item.id)}
+          showsVerticalScrollIndicator={false}
         />
       </Layout>
     </SafeAreaView>

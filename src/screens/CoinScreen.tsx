@@ -21,6 +21,7 @@ function CoinScreen() {
         data={fetchCoinLog.data}
         renderItem={({ item }: ListRenderItemInfo<CoinLog>) => <CoinItem coin={item} />}
         keyExtractor={item => String(item.id)}
+        showsVerticalScrollIndicator={false}
       />
     </SafeAreaView>
   );
@@ -75,14 +76,14 @@ const CoinItem = memo(({ coin }: Props) => {
 const SmallText = styled.Text`
   letter-spacing: -0.5px;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 14px;
   color: ${colors.grey500};
 `;
 
 const BigText = styled.Text`
   letter-spacing: -0.5px;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 15px;
 `;
 
 const Row = styled.View`
