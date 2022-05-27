@@ -40,7 +40,7 @@ function ProfileChangeScreen({ navigation }: NativeStackScreenProps<OptionStackN
   const handlePressChange = async () => {
     try {
       if (url !== fetchUser.data?.coupleInfo?.imageUrl) {
-        await aws.upload(url!, fileName, fetchUser.data!.id);
+        await aws.upload(url!, fileName, fetchUser.data!.coupleInfo!.id);
       }
       if (nickName !== fetchUser.data?.coupleInfo?.nickname) {
         const member: Partial<Member> = { ...fetchUser.data!.coupleInfo, nickname: nickName };
