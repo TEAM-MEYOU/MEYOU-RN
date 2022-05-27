@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Layout from '@components/Layout';
 import CoupleInfo from '@components/CoupleInfo';
