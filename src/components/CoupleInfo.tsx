@@ -11,7 +11,10 @@ function CoupleInfo() {
   const fetchUser = useFetchUser();
   const fetchCouple = useFetchCouple(fetchUser.data?.coupleId);
   return (
-    <Container>
+    <Container
+      style={css`
+        margin-bottom: 5px;
+      `}>
       <View
         style={css`
           flex-direction: row;
