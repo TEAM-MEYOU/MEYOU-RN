@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Layout from '@components/Layout';
 import CoupleInfo from '@components/CoupleInfo';
@@ -12,6 +12,9 @@ function HomeScreen() {
   const fetchUser = useFetchUser();
   const fetchDiaryList = useFetchDiaryList(fetchUser.data?.coupleId);
 
+  const fetchNextPage = () => {
+    fetchDiaryList.hasNextPage && fetchDiaryList.fetchNextPage();
+  };
   return (
     <SafeAreaView edges={['top', 'left', 'right']}>
       <Layout>
@@ -28,6 +31,8 @@ function HomeScreen() {
           renderItem={({ item }: ListRenderItemInfo<CoupleDiary>) => <DiaryBox coupleDiary={item} />}
           keyExtractor={item => String(item.id)}
           showsVerticalScrollIndicator={false}
+          onEndReached={fetchNextPage}
+          onEndReachedThreshold={0.4}
         />
       </Layout>
     </SafeAreaView>
