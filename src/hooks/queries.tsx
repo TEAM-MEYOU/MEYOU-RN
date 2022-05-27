@@ -60,8 +60,15 @@ export const useFetchDiaryList = (
 ) => {
   const diaryList: UseInfiniteQueryResult<Page<CoupleDiary>, AxiosError> = useInfiniteQuery(
     'diaryList',
-    () => getCoupleDiary(coupleId!),
+    ({ pageParam }) => getCoupleDiary(coupleId!, pageParam),
     {
+      getNextPageParam: lastPage => {
+        const currentPage = lastPage.pageable.pageNumber;
+        if (currentPage + 1 > lastPage.totalPages) {
+          return undefined;
+        }
+        return currentPage + 1;
+      },
       enabled: coupleId !== undefined,
       ...options,
     }

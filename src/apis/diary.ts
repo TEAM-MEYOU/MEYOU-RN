@@ -31,7 +31,14 @@ export interface Page<T> {
   last: boolean;
   number: number;
   numberOfElements: number;
-  pageable: object;
+  pageable: {
+    sort: object;
+    pageNumber: number;
+    pageSize: number;
+    offset: number;
+    paged: boolean;
+    unpaged: boolean;
+  };
   size: number;
   sort: {
     empty: boolean;
@@ -62,9 +69,10 @@ export const writeDiary = async (diary: WriteDiary) => {
 /**
  * 커플 다이어리 조회 API
  * @param coupleId
+ * @param page
  */
-export const getCoupleDiary = async (coupleId: number) => {
-  const response = await axios.get(`${API_URL}/couple?coupleId=${coupleId}`);
+export const getCoupleDiary = async (coupleId: number, page = 0) => {
+  const response = await axios.get(`${API_URL}/couple?coupleId=${coupleId}&size=5&page=${page}`);
   return response.data;
 };
 
