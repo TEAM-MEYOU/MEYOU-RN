@@ -7,14 +7,13 @@ import { useFetchUser } from '@hooks/queries';
 import { css } from '@emotion/native';
 import UserProfileImage from '@components/UserProfileImage';
 import BottomCTA from '@components/BottomCTA';
-import { launchImageLibrary } from 'react-native-image-picker';
-import ImageResizer from 'react-native-image-resizer';
 import useAWS from '@hooks/useAWS';
 import { Member, updateMember } from '@apis/member';
 import { useQueryClient } from 'react-query';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { OptionStackNavigator } from '@navigation/OptionNavigation';
 import KeyboardHide from '@components/KeyboardHide';
+import ImagePicker from 'react-native-image-crop-picker';
 
 function ProfileChangeScreen({ navigation }: NativeStackScreenProps<OptionStackNavigator, 'ProfileChange'>) {
   const queryClient = useQueryClient();
@@ -26,10 +25,14 @@ function ProfileChangeScreen({ navigation }: NativeStackScreenProps<OptionStackN
 
   const handlePressChangeImage = async () => {
     try {
-      const result = await launchImageLibrary({ mediaType: 'photo' });
-      const ImageUri = result.assets ? result.assets[0].uri : url;
-      setUrl(ImageUri);
-      result.assets && setFileName(result.assets[0].fileName!);
+      const image = await ImagePicker.openPicker({
+        width: 300,
+        height: 300,
+        cropping: true,
+        cropperCircleOverlay: true,
+      });
+      setUrl(image.path);
+      setFileName(image.filename!);
     } catch (e) {
       console.log(e);
     }
@@ -37,14 +40,13 @@ function ProfileChangeScreen({ navigation }: NativeStackScreenProps<OptionStackN
   const handlePressChange = async () => {
     try {
       if (url !== fetchUser.data?.coupleInfo?.imageUrl) {
-        const resizedImage = await ImageResizer.createResizedImage(url!, 300, 300, 'JPEG', 100);
         await aws.upload(url!, fileName, fetchUser.data!.id);
       }
       if (nickName !== fetchUser.data?.coupleInfo?.nickname) {
         const member: Partial<Member> = { ...fetchUser.data!.coupleInfo, nickname: nickName };
         await updateMember(member);
-        await queryClient.invalidateQueries('user');
       }
+      await queryClient.invalidateQueries('user');
       navigation.navigate('Option');
     } catch (e) {
       console.log(e);
